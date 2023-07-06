@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
-use serde_wasm_bindgen;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Branch {
@@ -32,9 +31,12 @@ pub async fn run() -> Result<JsValue, JsValue> {
         .get("https://api.github.com/repos/rustwasm/wasm-bindgen/branches/master")
         .header("Accept", "application/vnd.github.v3+json")
         .send()
-        .await.expect("die");
+        .await
+        .expect("die"); // dont do this
 
-    let text = res.text().await.expect("die");
+    let text = res.text()
+    .await
+    .expect("die"); // dont do this
     let branch_info: Branch = serde_json::from_str(&text).unwrap();
 
     Ok(serde_wasm_bindgen::to_value(&branch_info).unwrap())
