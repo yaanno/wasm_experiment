@@ -31,7 +31,7 @@ pnpm dev
 To build and serve your project
 ```bash
 pnpm build
-pnpm serve
+pnpm preview
 ```
 
 There you go... I mean rust :)
